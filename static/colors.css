@@ -1,0 +1,14 @@
+:root {
+    /* Colors */
+    --bg: #EFEFE3;
+    --fg: #373737;
+    --gro: #FA9372;
+    --grt: #EF709B;
+
+}
+
+@font-face {
+    font-family: readex;
+    src: url('./fonts/ReadexPro-bold.ttf');
+    font-weight: bold;
+}

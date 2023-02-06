@@ -1,0 +1,72 @@
+@import url("colors.css");
+
+.body {
+    background-color: var(--bg);
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.logo_wrap_home {
+    position: relative;
+    display: flexbox;
+    max-width: 800px;
+    margin: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-bottom: 0.8em;
+    margin-top: -1.25em;
+}
+
+.logo_combine_home {
+    display: inline-flex;
+    padding-bottom: 50px;
+}
+
+.logo_text_home {
+    position: relative;
+    margin: auto;
+    font-size: 7em;
+    font-family: readex;
+    padding-right: 250px;
+}
+
+input[type="text"], input[type="submit"] {
+    border: none;
+    height: 40px;
+}
+
+input[type="text"]:hover, input[type="text"]:focus {
+    border-inline-style: 2px solid var(--bg);
+    outline: none;
+    writing-mode: horizontal-tb;
+}
+
+.search_url_homepage, .search_button_homepage {
+    background-image: linear-gradient(to right, var(--gro), var(--grt));
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    color: var(--bg);
+    font-family: readex;
+    font-size: x-large;
+    text-indent: 15px;
+}
+
+#search_url_homepage_id {
+    width: 100%;
+}
+
+#search_button_homepage_id {
+    direction: rtl;
+    background-image: linear-gradient(to right, var(--gro), var(--grt));
+    border-radius: 0 4 4 0;
+    min-width: 60px;
+    min-height: 30px;
+    margin-left: -100px;
+    background-color: transparent;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}

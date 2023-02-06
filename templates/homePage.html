@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block title %}SEING{% endblock %} {% block styles%}
+{{super()}}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{url_for('.static', filename='homePage.css')}}"
+/>
+{% endblock %} {% block body %}
+<body class="body" style="margin: 0px auto">
+  <div class="logo_wrap_home">
+    <div class="logo_combine_home">
+      <p class="logo_text_home">SEING</p>
+      <img
+        src="{{ url_for('static', filename='assets/logo.png') }}"
+        alt="einstein smiles"
+        width="125"
+        height="150"
+      />
+    </div>
+    <form method="GET" action="/">
+      <input
+        id="search_url_homepage_id"
+        class="search_url_homepage"
+        type="text"
+        name="q"
+        tabindex="1"
+        placeholder="Search The Web"
+        value=""
+        autocapitalize="none"
+        autocorrect="off"
+      />
+      <input
+        id="search_button_homepage_id"
+        class="search_button_homepage"
+        type="submit"
+        tabindex="2"
+        value="S"
+      />
+    </form>
+  </div>
+</body>
+{% endblock %}
