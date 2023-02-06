@@ -1,12 +1,20 @@
+#!/usr/bin/env python
 
 { pkgs ? import <nixpkgs> {} }:
 
-pkgs.mkShell {
+pkgs.mkShell rec {
+  name = "seing";
+  venvDir = "./.venv";
+
   packages = [
-    # here goes python pkgs
     (pkgs.python3.withPackages (ps: [
       ps.flask
+      ps.venvShellHook
+      ps.pytest
     ]))
-    # here goes normael pkgs
   ];
+
+  postShellHook = ''
+    source ${venvDir}/bin/activate
+  '';
 }
