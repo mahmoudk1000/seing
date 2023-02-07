@@ -12,13 +12,13 @@
 
 .logo_wrap_home {
     position: relative;
-    display: flexbox;
-    max-width: 800px;
+    max-width: 1200px;
     margin: auto;
     margin-top: auto;
     margin-bottom: auto;
     margin-bottom: 0.8em;
     margin-top: -1.25em;
+    width: max-content;
 }
 
 .logo_combine_home {
@@ -31,7 +31,13 @@
     margin: auto;
     font-size: 7em;
     font-family: readex;
-    padding-right: 250px;
+}
+
+.logo_wrapper {
+    width: 460px;
+    display: inline-flex;
+    position: relative;
+    justify-content: right;
 }
 
 input[type="text"], input[type="submit"] {
@@ -45,28 +51,61 @@ input[type="text"]:hover, input[type="text"]:focus {
     writing-mode: horizontal-tb;
 }
 
-.search_url_homepage, .search_button_homepage {
-    background-image: linear-gradient(to right, var(--gro), var(--grt));
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-    border-radius: 4px;
+.search_url_wrapper {
+    padding: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    float: none;
+}
+
+.search_url_homepage {
     color: var(--bg);
-    font-family: readex;
+    border-radius: 4px;
     font-size: x-large;
-    text-indent: 15px;
+    font-family: readex;
+    text-indent: 10px;
+    display: block;
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 0;
+    z-index: 1;
+    position: relative;
+}
+
+.search_button_homepage {
+    color: var(--bg);
+    appearance: none;
+    border-radius: 0px 4px 4px 0px;
+    box-sizing: content-box;
+    width: 1em;
+    display: block;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    text-align: center;
+    border: none;
+    position: absolute;
+    bottom: 0em;
+    right: 0em;
+    z-index: 2;
+    outline: none;
 }
 
 #search_url_homepage_id {
+    background-image: linear-gradient(to right, var(--gro), var(--grt));
     width: 100%;
 }
 
 #search_button_homepage_id {
-    direction: rtl;
-    background-image: linear-gradient(to right, var(--gro), var(--grt));
-    border-radius: 0 4 4 0;
-    min-width: 60px;
-    min-height: 30px;
-    margin-left: -100px;
+    border-radius: 0px 4px 4px 0px;
+    min-width: 8%;
     background-color: transparent;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
+}
+
+.search_bar_homepage:hover  #search_button_homepage_id {
+    /* background-image: linear-gradient(to right, var(--gro), var(--grt)); */
+    background-color: var(--bg);
+    opacity: 0.4;
 }
