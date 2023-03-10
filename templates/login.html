@@ -1,0 +1,64 @@
+{% extends "base.html" %} {% block title %}SEING Login{% endblock %} {% block
+styles%} {{super()}}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{url_for('.static', filename='login.css')}}"
+/>
+{% endblock %} {% block body %}
+<body class="body" style="margin: 0px auto">
+  <div class="content">
+    <div class="logo_wrap_home">
+      <div class="logo_combine_home">
+        <p class="logo_text_home">SEING</p>
+        <div class="logo_wrapper">
+          <img
+            src="{{ url_for('static', filename='assets/logo.png') }}"
+            alt="einstein smiles"
+            width="125"
+            height="150"
+          />
+        </div>
+      </div>
+      <div class="login_container">
+        <div style="margin: 5%;">
+            <form method="POST" action="#">
+            <h1>Welcome Back!</h1>
+            <p style="text-align: left;padding-left: 5%;" >Username/Email</p>
+            <input
+                style="width: 90%;"
+                type="text"
+                name="mail"
+                tabindex="1"
+                placeholder="human@example.com"
+                value=""
+                autocapitalize="none"
+                autocorrect="off"
+            />
+            <p style="text-align: left;padding-left: 5%;margin-top: 10%;" >Password</p>
+            <input
+                style="width: 90%;"
+                type="password"
+                name="password"
+                tabindex="1"
+                placeholder="********"
+                value=""
+                autocapitalize="none"
+                autocorrect="off"
+            />
+            <div class="buttons"    >
+                <input
+                style="margin-right: 3%"
+                type="submit"
+                tabindex="2"
+                value="Forget Password"
+                />
+                <input type="submit" tabindex="2" value="Login" />
+            </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}
