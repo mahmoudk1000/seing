@@ -3,6 +3,27 @@
 .body {
     background-color: var(--bg);
     margin: 0;
+}
+
+.top_widget{
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 50px;
+}
+
+.top_widget_text{
+    font-family: readex;
+    border-radius: 4px;
+    padding-top: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: var(--dbg);
+    margin-right: 10px;
+}
+
+.content{
     position: absolute;
     top: 50%;
     left: 50%;
