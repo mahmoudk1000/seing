@@ -1,0 +1,54 @@
+{% extends "base.html" %} {% block title %}{{q}} at SEING{% endblock %} {% block
+styles%} {{super()}}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{url_for('.static', filename='results.css')}}"
+/>
+{% endblock %} {% block body %}
+<body class="body" style="margin: 0px auto">
+  <div class="header_wrap">
+    <div class="header_wrapper">
+      <img
+        src="{{ url_for('static', filename='assets/logo.png') }}"
+        alt="einstein smiles"
+        width="112.5"
+        height="135"
+      />
+      <div class="search_bar_homepage">
+        <form method="POST" action="/">
+          <input
+            id="search_url_homepage_id"
+            class="search_url_homepage"
+            type="text"
+            name="q"
+            tabindex="1"
+            placeholder="Search The Web"
+            value="{{q}}"
+            autocapitalize="none"
+            autocorrect="off"
+          />
+          <input
+            id="search_button_homepage_id"
+            class="search_button_homepage"
+            type="submit"
+            tabindex="2"
+            value="Search"
+          />
+        </form>
+      </div>
+    </div>
+    <div class="top_widget">
+      <p class="top_widget_text">UI revamped, privacy corrected</p>
+      <a href="/login">
+        <img
+          src="{{ url_for('static', filename='assets/sign_in_icon_widget.png') }}"
+          alt="account icon"
+          width="42"
+          height="42"
+        />
+      </a>
+    </div>
+  </div>
+</body>
+{% endblock body %}

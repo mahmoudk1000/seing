@@ -1,0 +1,123 @@
+@import url("colors.css");
+
+.body {
+    background-color: var(--bg);
+    margin: 0;
+}
+
+.header_wrap {
+    position: relative;
+    width: 92%;
+    margin: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-bottom: 0.8em;
+    margin-top: -1.25em;
+    position: absolute;
+    top: 4%;
+    left: 4%;
+}
+
+.header_wrapper {
+    width: 50%;
+    display: inline-flex;
+    position: relative;
+}
+
+.top_widget {
+    display: flex;
+    width: 50%;
+    justify-content: right;
+    position: absolute;
+    margin-top: 50px;
+    top: 0;
+    right: 0;
+}
+
+.top_widget_text {
+    font-family: readex;
+    border-radius: 4px;
+    padding-top: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: var(--dbg);
+    margin-right: 10px;
+}
+
+input[type="text"],
+input[type="submit"] {
+    border: none;
+    height: 40px;
+}
+
+input[type="text"]:hover,
+input[type="text"]:focus {
+    border-inline-style: 2px solid var(--bg);
+    outline: none;
+    writing-mode: horizontal-tb;
+}
+
+.search_url_wrapper {
+    padding: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    float: none;
+}
+
+.search_url_homepage {
+    color: var(--bg);
+    border-radius: 4px;
+    font-size: x-large;
+    font-family: readex;
+    text-indent: 10px;
+    display: block;
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 0;
+    z-index: 1;
+    position: relative;
+}
+
+.search_button_homepage {
+    color: var(--bg);
+    appearance: none;
+    border-radius: 0px 4px 4px 0px;
+    box-sizing: content-box;
+    width: 1em;
+    display: block;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    text-align: center;
+    border: none;
+    position: absolute;
+    bottom: 0em;
+    right: 0em;
+    z-index: 2;
+    outline: none;
+}
+
+#search_url_homepage_id {
+    background-image: linear-gradient(to right, var(--gro), var(--grt));
+    width: 100%;
+}
+
+#search_button_homepage_id {
+    border-radius: 0px 4px 4px 0px;
+    min-width: 8%;
+    background-color: transparent;
+}
+
+.search_bar_homepage {
+    width: 80%;
+    margin-left: 150px;
+    position: absolute;
+    top: 35%;
+}
+
+.search_bar_homepage:hover #search_button_homepage_id {
+    background-color: var(--bg);
+    opacity: 0.4;
+}
