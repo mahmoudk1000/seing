@@ -85,16 +85,18 @@ input[type="text"]:focus {
     appearance: none;
     border-radius: 0px 4px 4px 0px;
     box-sizing: content-box;
-    width: 1em;
-    display: block;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
     background-position-x: 0%;
     background-position-y: 0%;
     background-repeat: repeat;
     text-align: center;
     border: none;
     position: absolute;
-    bottom: 0em;
-    right: 0em;
+    bottom: -8px;
+    right: -25px;
+    text-indent: -999em;
     z-index: 2;
     outline: none;
 }
