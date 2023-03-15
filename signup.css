@@ -1,0 +1,110 @@
+@import url("colors.css");
+
+.body {
+    background-color: var(--bg);
+    margin: 0;
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.logo_wrap_home {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-bottom: 0.8em;
+    margin-top: -1.25em;
+    width: max-content;
+}
+
+.logo_combine_home {
+    display: inline-flex;
+    padding-bottom: 50px;
+}
+
+.logo_text_home {
+    position: relative;
+    margin: auto;
+    font-size: 7em;
+    font-family: readex;
+}
+
+.logo_wrapper {
+    width: 260px;
+    display: inline-flex;
+    position: relative;
+    justify-content: right;
+}
+
+input[type="text"],
+input[type="password"] {
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    height: 30px;
+    background-color: var(--dbg);
+    box-sizing: content-box;
+    display: inline-block;
+}
+
+input[type="text"]:hover,
+input[type="text"]:focus {
+    border-inline-style: 2px solid var(--bg);
+    outline: none;
+    writing-mode: horizontal-tb;
+}
+
+.login_container {
+    font-family: readex;
+    border: 5px solid transparent;
+    border-image-slice: 1;
+    background: linear-gradient(var(--bg), var(--bg)) padding-box, linear-gradient(to right, var(--gro), var(--grt)) border-box;
+    padding: 25px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.buttons_container {
+    margin: 5%;
+    margin-top: 10%;
+}
+
+input[type=submit] {
+    background-image: linear-gradient(to right, var(--gro), var(--grt));
+    border: none;
+    width: 80%;
+    font-size: 1.1em;
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.button_login {
+    height: 30px;
+    margin-bottom: 3%;
+}
+
+input[type=submit]:hover {
+    background-position: right center;
+}
+
+input[type=button] {
+    background-color: var(--dbg);
+    border: none;
+    color: var(--fg);
+    padding: 10px 20px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
