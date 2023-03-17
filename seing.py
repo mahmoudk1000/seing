@@ -33,5 +33,10 @@ def signup():
     return render_template("signup.html")
 
 
+@app.errorhandler(404)
+def page_not_found(error):
+    return f"<h1> Oops, you got lost!!</h1><br><h2>{error}</h2>"
+
+
 if __name__ == "__main__":
     app.run(debug=True)
