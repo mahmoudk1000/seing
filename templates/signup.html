@@ -1,0 +1,91 @@
+{% extends "base.html" %} {% block title %}SEING Login{% endblock %} {% block
+styles%} {{super()}}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{url_for('.static', filename='signup.css')}}"
+/>
+{% endblock %} {% block body %}
+<body class="body" style="margin: 0px auto">
+  <div class="content">
+    <div class="logo_wrap_home">
+      <div class="logo_combine_home">
+        <p class="logo_text_home">SEING</p>
+        <div class="logo_wrapper">
+          <img
+            src="{{ url_for('static', filename='assets/logo.png') }}"
+            alt="einstein smiles"
+            width="125"
+            height="150"
+          />
+        </div>
+      </div>
+      <div class="sign-up_container">
+        <div style="margin: 5%;">
+            <form method="POST" action="#">
+            <h1 style="font-size: 4.5em;">Welcome Back!</h1>
+            <div class="form_container" style="text-align: left;">
+              <div class="left" >
+                <p>Full Name</p>
+                <input
+                    type="text"
+                    name="name"
+                    tabindex="1"
+                    placeholder="John Wick"
+                    value=""
+                    autocapitalize="True"
+                    autocorrect="off"
+                />
+                <p>Password</p>
+                <input
+                    type="password"
+                    name="password"
+                    tabindex="1"
+                    placeholder="********"
+                    value=""
+                    autocapitalize="none"
+                    autocorrect="off"
+                />
+              </div>
+              <div class="right">
+                <p>Username/Email</p>
+                <input
+                    type="text"
+                    name="mail"
+                    tabindex="1"
+                    placeholder="example@domain.com"
+                    value=""
+                    autocapitalize="none"
+                    autocorrect="off"
+                />
+                <p>Confirm Password</p>
+                <input
+                    type="password"
+                    name="password"
+                    tabindex="1"
+                    placeholder="********"
+                    value=""
+                    autocapitalize="none"
+                    autocorrect="off"
+                />
+              </div>
+            </div>
+            <div class="buttons_container">
+              <div class="button_sign-up">
+                <input type="submit" tabindex="2" value="Sign Up" />
+              </div>
+                <input
+                style="width: 39%;"
+                type="button"
+                tabindex="1"
+                value="Terms % Agreement"
+                />
+                <input type="button" style="width: 39%;" onclick="window.location.href='/login';" tabindex="2" value="Login" />
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}
