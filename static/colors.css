@@ -13,3 +13,9 @@
     src: url('./fonts/ReadexPro-bold.ttf');
     font-weight: bold;
 }
+
+@font-face {
+    font-family: boogaloo;
+    src: url('./fonts/Boogaloo-Regular.ttf');
+    font-weight: bold;
+}
