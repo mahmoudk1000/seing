@@ -52,6 +52,7 @@ input[type="password"] {
     background-color: var(--dbg);
     box-sizing: content-box;
     display: inline-block;
+    font-size: large;
 }
 
 input[type="text"]:hover,
@@ -62,7 +63,7 @@ input[type="text"]:focus {
 }
 
 .login_container {
-    font-family: readex;
+    font-family: boogaloo;
     border: 5px solid transparent;
     border-image-slice: 1;
     background: linear-gradient(var(--bg), var(--bg)) padding-box, linear-gradient(to right, var(--gro), var(--grt)) border-box;
