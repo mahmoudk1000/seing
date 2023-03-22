@@ -1,11 +1,16 @@
-{% extends "base.html" %} {% block title %}SEING Login{% endblock %} {% block
-styles%} {{super()}}
+{% extends "base.html" %}
+
+{% block title %}Sign Up - SEING{% endblock %}
+
+{% block styles%} {{super()}}
 <link
   rel="stylesheet"
   type="text/css"
   href="{{url_for('.static', filename='signup.css')}}"
 />
-{% endblock %} {% block body %}
+{% endblock %}
+
+{% block body %}
 <body class="body" style="margin: 0px auto">
   <div class="content">
     <div class="logo_wrap_home">
@@ -23,13 +28,13 @@ styles%} {{super()}}
       <div class="sign-up_container">
         <div style="margin: 5%;">
             <form method="POST" action="#">
-            <h1 style="font-size: 4.5em;">Welcome Back!</h1>
+            <h1 style="font-size: 4.5em;">Welcome You!</h1>
             <div class="form_container" style="text-align: left;">
               <div class="left" >
                 <p>Full Name</p>
                 <input
                     type="text"
-                    name="name"
+                    name="username"
                     tabindex="1"
                     placeholder="John Wick"
                     value=""
@@ -50,8 +55,8 @@ styles%} {{super()}}
               <div class="right">
                 <p>Username/Email</p>
                 <input
-                    type="text"
-                    name="mail"
+                    type="email"
+                    name="email"
                     tabindex="1"
                     placeholder="example@domain.com"
                     value=""
@@ -61,7 +66,7 @@ styles%} {{super()}}
                 <p>Confirm Password</p>
                 <input
                     type="password"
-                    name="password"
+                    name="confirm_password"
                     tabindex="1"
                     placeholder="********"
                     value=""

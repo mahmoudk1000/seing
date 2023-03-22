@@ -1,11 +1,16 @@
-{% extends "base.html" %} {% block title %}SEING Login{% endblock %} {% block
-styles%} {{super()}}
+{% extends "base.html" %}
+
+{% block title %}SEING Login{% endblock %}
+
+{% block styles%} {{super()}}
 <link
   rel="stylesheet"
   type="text/css"
   href="{{url_for('.static', filename='login.css')}}"
 />
-{% endblock %} {% block body %}
+{% endblock %}
+
+{% block body %}
 <body class="body" style="margin: 0px auto">
   <div class="content">
     <div class="logo_wrap_home">
@@ -22,13 +27,13 @@ styles%} {{super()}}
       </div>
       <div class="login_container">
         <div style="margin: 5%;">
-            <form method="POST" action="#">
+            <form method="POST" action="/login">
             <h1 style="font-size: 3.5em;">Welcome Back!</h1>
-            <p style="text-align: left;padding-left: 5%;font-size: large;" >Username/Email</p>
+            <p style="text-align: left;padding-left: 5%;font-size: large;" >Email</p>
             <input
                 style="width: 90%;padding-left: 2%;"
-                type="text"
-                name="mail"
+                type="email"
+                name="email"
                 tabindex="1"
                 placeholder="example@domain.com"
                 value=""

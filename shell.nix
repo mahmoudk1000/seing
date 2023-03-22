@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import <nixpkgs> { } }:
 
 pkgs.mkShell rec {
   name = "seing";
@@ -10,7 +10,9 @@ pkgs.mkShell rec {
     (pkgs.python3.withPackages (ps: [
       ps.flask
       ps.venvShellHook
-      ps.pytest
+      ps.flask_sqlalchemy
+      ps.flask_login
+      ps.werkzeug
     ]))
   ];
 
