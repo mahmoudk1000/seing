@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from sqlalchemy.orm import session
+from sqlalchemy.orm import query, session
 from flask import Flask, redirect, url_for, render_template, request, session
 from models import db, login, User
 from flask_login import current_user, login_user, login_required, logout_user
@@ -22,11 +22,15 @@ def create_table():
     db.create_all()
 
 
-@app.route("/", methods=["GET"])
+@app.route("/", methods=["POST", "GET"])
 def home():
     '''Homepage routeing function'''
     if request.method == "POST":
         q = request.form["q"]
+        # results = search(q, num_results=35)
+		# session["results"] = results
+		# session["query"] = query
+        # return redirect(url_for("results", results=session["results"], query=session["query"]))
         return redirect(url_for("results", query=q))
     else:
         return render_template("homePage.html")
