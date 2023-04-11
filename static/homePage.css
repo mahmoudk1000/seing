@@ -122,12 +122,14 @@ input[type="text"]:hover, input[type="text"]:focus {
 }
 
 #search_button_homepage_id {
+    background: url('assets/search_icon.png' ) no-repeat;
+    cursor: pointer;
     border-radius: 0px 4px 4px 0px;
     min-width: 8%;
     background-color: transparent;
 }
 
 .search_bar_homepage:hover  #search_button_homepage_id {
-    background-color: var(--bg);
+    background-color: transparent;
     opacity: 0.4;
 }

@@ -23,8 +23,16 @@ class User(UserMixin, db.Model):
      
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+
+class Seing(db.Model):
+    __tablename__ = 'site_repo'
+
+    id = db.Column('id', db.Integer, primary_key=True)
+    site = db.Column('site', db.String(120))
+    url = db.Column('url', db.String(120), unique=True)
  
- 
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))

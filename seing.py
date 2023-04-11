@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 
 from sqlalchemy.orm import query, session
-from flask import Flask, redirect, url_for, render_template, request, session
-from models import db, login, User
+from flask import Flask, redirect, url_for, render_template, request, session, flash
+from models import db, login, User, Seing
 from flask_login import current_user, login_user, login_required, logout_user
+from forms import SearchForm
+from search import search_db
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SEING'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///seing.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
@@ -23,23 +25,23 @@ def create_table():
 
 
 @app.route("/", methods=["POST", "GET"])
-def home():
-    '''Homepage routeing function'''
+def seing():
+    '''Searching func, that links db with front and searching'''
+    search_form = SearchForm(request.form)
     if request.method == "POST":
-        q = request.form["q"]
-        # results = search(q, num_results=35)
-		# session["results"] = results
-		# session["query"] = query
-        # return redirect(url_for("results", results=session["results"], query=session["query"]))
-        return redirect(url_for("results", query=q))
+        results = search_db(search_form.query.data)
+        return seing_results(query=search_form.query.data, results=results, form=search_form)
     else:
-        return render_template("homePage.html")
+        return render_template("homePage.html", form=search_form)
 
 
-@app.route("/results?<query>")
-def results(query):
+@app.route("/results?<query>", methods=["POST", "GET"])
+def seing_results(query, results, form):
     if request.method == "GET":
-        return render_template("results.html", q=query)
+        return render_template("results.html", results=results, q=query, form=form)
+    elif request.method == "POST":
+        results = search_db(form.query.data)
+        return render_template("results.html", results=results, q=form.query.data, form=form)
     else:
         return redirect("/")
 
@@ -96,6 +98,7 @@ def profile():
 def logout():
     session.pop('email', None)
     logout_user()
+    flash('You have been logged out.')
     return redirect("/")
 
 

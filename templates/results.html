@@ -1,11 +1,17 @@
-{% extends "base.html" %} {% block title %}{{q}} at SEING{% endblock %} {% block
-styles%} {{super()}}
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{{url_for('.static', filename='results.css')}}"
-/>
-{% endblock %} {% block body %}
+{% extends "base.html" %}
+
+{% block title %}{{ q }} at SEING{% endblock %}
+
+{% block styles%}
+  {{ super() }}
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('.static', filename='results.css') }}"
+  />
+{% endblock %}
+
+{% block body %}
 <body class="body" style="margin: 0px auto">
   <div class="header_wrap">
     <div class="header_wrapper">
@@ -17,25 +23,8 @@ styles%} {{super()}}
       />
       <div class="search_bar_homepage">
         <form method="POST" action="/">
-          <input
-            id="search_url_homepage_id"
-            class="search_url_homepage"
-            type="text"
-            name="q"
-            tabindex="1"
-            placeholder="Search The Web"
-            value="{{q}}"
-            autocapitalize="none"
-            autocorrect="off"
-          />
-          <input
-            style="background: url({{ url_for('static', filename='assets/search_icon.png') }}) no-repeat;cursor: pointer;"
-            id="search_button_homepage_id"
-            class="search_button_homepage"
-            type="submit"
-            tabindex="2"
-            value="s"
-          />
+          {{ form.query(class='search_url_homepage', id='search_url_homepage_id', value=q) }}
+          {{ form.submit(class='search_button_homepage', id='search_button_homepage_id') }}
         </form>
       </div>
     </div>
@@ -50,6 +39,14 @@ styles%} {{super()}}
         />
       </a>
     </div>
+  </div>
+  <div class="results" >
+    {% for result in results %}
+      <a href="http://{{ result.url }}"><div class="result_comp">
+        <h2>{{ result.site }}</h2>
+        {{ result.url }}
+      </div></a>
+    {% endfor %}
   </div>
 </body>
 {% endblock body %}

@@ -1,11 +1,17 @@
-{% extends "base.html" %} {% block title %}SEING{% endblock %} {% block styles%}
-{{super()}}
+{% extends "base.html" %}
+
+{% block title %}SEING{% endblock %}
+
+{% block styles%}
+{{ super() }}
 <link
   rel="stylesheet"
   type="text/css"
   href="{{url_for('.static', filename='homePage.css')}}"
 />
-{% endblock %} {% block body %}
+{% endblock %}
+
+{% block body %}
 <body class="body" style="margin: 0px auto">
   <div class="top_widget">
     <p class="top_widget_text">UI revamped, privacy corrected</p>
@@ -33,25 +39,8 @@
       </div>
       <div class="search_bar_homepage">
         <form method="POST" action="/">
-          <input
-            id="search_url_homepage_id"
-            class="search_url_homepage"
-            type="text"
-            name="q"
-            tabindex="1"
-            placeholder="Search The Web"
-            value=""
-            autocapitalize="none"
-            autocorrect="off"
-          />
-          <input
-            style="background: url({{ url_for('static', filename='assets/search_icon.png') }}) no-repeat;cursor: pointer;"
-            id="search_button_homepage_id"
-            class="search_button_homepage"
-            type="submit"
-            tabindex="2"
-            value="s"
-          />
+          {{ form.query(class='search_url_homepage', id='search_url_homepage_id', placeholder='Search The Web') }}
+          {{ form.submit(class='search_button_homepage', id='search_button_homepage_id') }}
         </form>
       </div>
     </div>

@@ -13,6 +13,8 @@ pkgs.mkShell rec {
       ps.flask_sqlalchemy
       ps.flask_login
       ps.werkzeug
+      ps.wtforms
+      ps.flask_wtf
     ]))
   ];
 
