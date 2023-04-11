@@ -130,7 +130,6 @@ input[type="text"]:focus {
     position: absolute;
     top: 20%;
     left: 10%;
-    /* background-color: blue; */
     width: 80%;
 }
 

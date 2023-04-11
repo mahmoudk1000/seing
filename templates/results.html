@@ -15,12 +15,12 @@
 <body class="body" style="margin: 0px auto">
   <div class="header_wrap">
     <div class="header_wrapper">
-      <img
+      <a href="/"><img
         src="{{ url_for('static', filename='assets/logo.png') }}"
         alt="einstein smiles"
         width="112.5"
         height="135"
-      />
+      /></a>
       <div class="search_bar_homepage">
         <form method="POST" action="/">
           {{ form.query(class='search_url_homepage', id='search_url_homepage_id', value=q) }}
