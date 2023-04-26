@@ -5,7 +5,7 @@ from flask import Flask, redirect, url_for, render_template, request, session, f
 from models import db, login, User, Seing
 from flask_login import current_user, login_user, login_required, logout_user
 from forms import SearchForm
-from search import search_db
+from search import search_db, fuzz_db
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SEING'
@@ -29,7 +29,7 @@ def seing():
     '''Searching func, that links db with front and searching'''
     search_form = SearchForm(request.form)
     if request.method == "POST":
-        results = search_db(search_form.query.data)
+        results = fuzz_db(search_form.query.data)
         return seing_results(query=search_form.query.data, results=results, form=search_form)
     else:
         return render_template("homePage.html", form=search_form)
@@ -40,7 +40,7 @@ def seing_results(query, results, form):
     if request.method == "GET":
         return render_template("results.html", results=results, q=query, form=form)
     elif request.method == "POST":
-        results = search_db(form.query.data)
+        results = fuzz_db(form.query.data)
         return render_template("results.html", results=results, q=form.query.data, form=form)
     else:
         return redirect("/")
