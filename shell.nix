@@ -1,6 +1,4 @@
-#!/usr/bin/env python
-
-{ pkgs ? import <nixpkgs> { } }:
+{ pkgs ? import <nixpkgs> {} }:
 
 pkgs.mkShell rec {
   name = "seing";
@@ -15,6 +13,14 @@ pkgs.mkShell rec {
       ps.werkzeug
       ps.wtforms
       ps.flask_wtf
+      ps.beautifulsoup4
+      ps.requests
+      ps.tld
+      ps.tldextract
+      ps.urllib3
+      ps.fuzzywuzzy
+      ps.geoip2
+      ps.numpy
     ]))
   ];
 
