@@ -16,7 +16,7 @@
 
 .logo_wrap_home {
     position: relative;
-    max-width: 800px;
+    max-width: 100%;
     margin: auto;
     margin-top: auto;
     margin-bottom: auto;
@@ -50,26 +50,28 @@
     text-align: right;
 }
 
-.left {
-    max-height: 100%;
-    max-width: 100%;
-    position: relative;
-    left: 0;
-    right: 50%;
-    width: 50%;
+label {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-.right {
-    max-height: 100%;
-    max-width: 100%;
-    position: relative;
-    left: 0%;
-    right: 0%;
-    width: 50%;
+.breaker {
+    display: block;
+    width:100%;
+}
+
+.up {
+    display: flex;
+}
+
+.down {
+    display: flex;
+    margin-top: 20px;
 }
 
 .form_container {
-    display: flex;
     font-size: larger;
 }
 
@@ -108,7 +110,7 @@ input[type="text"]:focus {
 
 .buttons_container {
     margin: 5%;
-    margin-top: 10%;
+    margin-top: 7%;
 }
 
 input[type=submit] {
