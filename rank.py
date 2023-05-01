@@ -1,6 +1,7 @@
-
 import requests
 from bs4 import BeautifulSoup
+from urllib.parse import urlparse
+import tldextract
 import numpy as np
 
 class PageRank:
@@ -9,18 +10,21 @@ class PageRank:
         self.urls = urls
 
 
-    def page_rank(self, damping_factor=0.85, max_iterations=100, epsilon=1e-6):
+    def page_rank(self, urls=[], damping_factor=0.85, max_iterations=100, epsilon=1e-6):
+        '''
+        Return dict of URLs with score. But dict is init with all four database model.
+        '''
         # Construct the index mapping for the URLs
         index_map = {}
-        for i, url in enumerate(self.urls):
+        for i, url in enumerate(urls):
             index_map[url] = i
 
         # Construct the adjacency matrix
-        n = len(self.urls)
+        n = len(urls)
         adjacency_matrix = np.zeros((n, n))
         for i in range(n):
             try:
-                html = requests.get(self.urls[i]).content
+                html = requests.get(urls[i]).content
                 soup = BeautifulSoup(html, 'html.parser')
                 links = soup.find_all('a')
                 for link in links:
@@ -53,7 +57,39 @@ class PageRank:
                 break
 
         # Return the PageRank scores as a dictionary of URL: score pairs
-        page_ranks = {}
-        for i, url in enumerate(self.urls):
-            page_ranks[url] = pi[i]
+        page_ranks = []
+        keys = ['site', 'url', 'score', 'desc']
+        for i, url in enumerate(urls):
+            values = [self.get_title_from_url(url), url, pi[i], self.get_url_description(url)]
+            my_dict = dict(zip(keys, values))
+            page_ranks.append(my_dict)
+        
         return page_ranks
+
+    
+    def get_title_from_url(self, url):
+        try:
+            response = requests.get(url)
+            soup = BeautifulSoup(response.text, 'html.parser')
+            title = soup.title.string.strip()
+            return title
+        except:
+            netloc = urlparse(url).netloc
+            extracted = tldextract.extract(netloc)
+            sld = '.'.join([extracted.domain]).rstrip('.').capitalize()
+            return sld
+
+
+    def get_url_description(self, url):
+        try:
+            response = requests.get(url)
+            soup = BeautifulSoup(response.content, 'html.parser')
+            description_tag = soup.find('meta', attrs={'name': 'description'})
+            if description_tag:
+                description = description_tag.get('content')
+            else:
+                return ''
+        except:
+            return ''
+
+        return description

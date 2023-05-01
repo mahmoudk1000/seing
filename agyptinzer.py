@@ -90,10 +90,13 @@ class Agyptinzer:
         """
         url_pattern = re.compile(r'https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+')
         for url in url_list:
-            reqs = requests.get(url)
-            soup = BeautifulSoup(reqs.text, 'html.parser')
-            for link in soup.find_all('a'):
-                if url_pattern.match(str(link.get("href"))):
-                    self.all_egypt_domains.append(link.get("href"))
+            try:
+                reqs = requests.get(url)
+                soup = BeautifulSoup(reqs.text, 'html.parser')
+                for link in soup.find_all('a'):
+                    if url_pattern.match(str(link.get("href"))):
+                        self.all_egypt_domains.append(link.get("href"))
+            except:
+                pass
 
         return self.all_egypt_domains
