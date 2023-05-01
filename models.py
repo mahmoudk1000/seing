@@ -28,8 +28,8 @@ class User(UserMixin, db.Model):
 class Seing(db.Model):
     __tablename__ = 'site_repo'
 
-    site = db.Column('site', db.String(120), primary_key=True)
-    url = db.Column('url', db.String(120), unique=True)
+    site = db.Column('site', db.String(120))
+    url = db.Column('url', db.String(120), primary_key=True)
     score = db.Column('score', db.Float, default=0.0)
     desc = db.Column('description', db.String(360))
  
