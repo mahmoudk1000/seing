@@ -28,40 +28,17 @@
       <div class="login_container">
         <div style="margin: 5%;">
             <form method="POST" action="/login">
-            <h1 style="font-size: 3.5em;">Welcome Back!</h1>
-            <p style="text-align: left;padding-left: 5%;font-size: large;" >Email</p>
-            <input
-                style="width: 90%;padding-left: 2%;"
-                type="email"
-                name="email"
-                tabindex="1"
-                placeholder="example@domain.com"
-                value=""
-                autocapitalize="none"
-                autocorrect="off"
-            />
-            <p style="text-align: left;padding-left: 5%;margin-top: 10%;font-size: large;" >Password</p>
-            <input
-                style="width: 90%;padding-left: 2%;"
-                type="password"
-                name="password"
-                tabindex="1"
-                placeholder="********"
-                value=""
-                autocapitalize="none"
-                autocorrect="off"
-            />
-            <div class="buttons_container">
-              <div class="button_login">
-                <input type="submit" tabindex="2" value="Login" />
-              </div>
-                <input
-                style="width: 39%;"
-                type="button"
-                tabindex="1"
-                value="Forget Password"
-                />
-                <input type="button" style="width: 39%;" onclick="window.location.href='/signup';" tabindex="2" value="Sign Up" />
+              <h1 style="font-size: 3.5em;">Welcome Back!</h1>
+              {{ form.email.label }}
+              {{ form.email(class='login_form_min', placeholder='Mohammed@example.com') }}
+              {{ form.password.label }}
+              {{ form.password(class='login_form_min', placeholder='************') }}
+              <div class="buttons_container">
+                <div class="button_login">
+                  {{ form.login }}
+                </div>
+                  <input style="width: 39%;" type="button" tabindex="1" value="Forget Password" />
+                  <input type="button" style="width: 39%;" onclick="window.location.href='/signup';" tabindex="2" value="Sign Up" />
               </div>
             </div>
         </form>

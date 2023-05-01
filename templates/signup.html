@@ -30,61 +30,32 @@
             <form method="POST" action="#">
             <h1 style="font-size: 4.5em;">Welcome You!</h1>
             <div class="form_container" style="text-align: left;">
-              <div class="left" >
-                <p>Full Name</p>
-                <input
-                    type="text"
-                    name="username"
-                    tabindex="1"
-                    placeholder="John Wick"
-                    value=""
-                    autocapitalize="True"
-                    autocorrect="off"
-                />
-                <p>Password</p>
-                <input
-                    type="password"
-                    name="password"
-                    tabindex="1"
-                    placeholder="********"
-                    value=""
-                    autocapitalize="none"
-                    autocorrect="off"
-                />
+              <div class="up" >
+                <div class="breaker">
+                  {{ form.username.label }}
+                  {{ form.username(placeholder='Mohammed') }}
+                </div>
+                <div class="breaker">
+                  {{ form.email.label }}
+                  {{ form.email(placeholder='mohammed@exmapl.com') }}
+                </div>
               </div>
-              <div class="right">
-                <p>Username/Email</p>
-                <input
-                    type="email"
-                    name="email"
-                    tabindex="1"
-                    placeholder="example@domain.com"
-                    value=""
-                    autocapitalize="none"
-                    autocorrect="off"
-                />
-                <p>Confirm Password</p>
-                <input
-                    type="password"
-                    name="confirm_password"
-                    tabindex="1"
-                    placeholder="********"
-                    value=""
-                    autocapitalize="none"
-                    autocorrect="off"
-                />
+              <div class="down">
+                <div class="breaker">
+                  {{ form.password.label }}
+                  {{ form.password(placeholder='**********') }}
+                </div>
+                <div class="breaker">
+                  {{ form.conf_password.label }}
+                  {{ form.conf_password(placeholder='**********') }}
+                </div>
               </div>
             </div>
             <div class="buttons_container">
               <div class="button_sign-up">
-                <input type="submit" tabindex="2" value="Sign Up" />
+                {{ form.register }}
               </div>
-                <input
-                style="width: 39%;"
-                type="button"
-                tabindex="1"
-                value="Terms % Agreement"
-                />
+                <input style="width: 39%;" type="button" tabindex="1" value="Terms % Agreement" />
                 <input type="button" style="width: 39%;" onclick="window.location.href='/login';" tabindex="2" value="Login" />
               </div>
             </div>

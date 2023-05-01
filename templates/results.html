@@ -42,10 +42,11 @@
   </div>
   <div class="results" >
     {% for result in results %}
-      <a href="http://{{ result.url }}"><div class="result_comp">
-        <h2>{{ result.site }}</h2>
-        {{ result.url }}
-      </div></a>
+        <div class="search-result">
+          <h2 class="search-result__name">{{ result.site }}</h2>
+          <a class="search-result__link" href="#">{{ result.url }}</a>
+          <p class="search-result__description">{{ result.desc }}</p>
+        </div>
     {% endfor %}
   </div>
 </body>
