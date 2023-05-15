@@ -32,6 +32,13 @@ class Seing(db.Model):
     url = db.Column('url', db.String(120), primary_key=True)
     score = db.Column('score', db.Float, default=0.0)
     desc = db.Column('description', db.String(360))
+
+    def to_dict(self):
+        return {
+            'site': self.site,
+            'url': self.url,
+            'description': self.desc
+        }
  
 
 @login.user_loader

@@ -19,6 +19,30 @@ class Agyptinzer:
         self.iterations = iterations
 
 
+    def check_egypt(self, url_list):
+        """
+        Return a list of only egypain domains, by running filter lavels.
+        """
+        for url in url_list:
+            url_pattern = re.compile(r'https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+')
+            if url_pattern.match(str(url)):
+                ext = tldextract.extract(url)
+                if ext.suffix in ['eg', 'com.eg', 'edu.eg', 'gov.eg', 'net.eg', 'org.eg']:
+                    self.egypt_domains.append(url)
+                else:
+                    parsed_url = urlparse(url)
+                    if 'egypt' in parsed_url.netloc or 'egy' in parsed_url.netloc or 'masr' in parsed_url.netloc:
+                        self.egypt_domains.append(url)
+                    elif parsed_url.netloc.endswith('.eg'):
+                        self.egypt_domains.append(url)
+                    else:
+                         self.is_hosted_in_egypt(url)
+            else:
+                pass
+
+        return self.egypt_domains
+
+
     def is_egyptian(self, url_list):
         """
         Returns Egyptian domains if the domain name of the given URL belongs to an Egyptian TLD, False otherwise.
@@ -51,36 +75,35 @@ class Agyptinzer:
         """
         Returns Egyptian domains if the given URL is hosted in Egypt.
         """
-        response = requests.head(url)
-        if response.status_code == 200 and 'eg' in response.headers.get('Server', ''):
-            self.egypt_domains.append(urlparse(url))
-        else:
-            try:
-                ip_address = socket.gethostbyname(url)
-                with geoip2.database.Reader(GEOIP_DB_PATH) as reader:
-                    response = reader.country(ip_address)
-                    if response.country.iso_code == 'EG':
-                        self.egypt_domains.append(url)
-                    else:
-                        pass
-            except:
-                pass
+        try:
+            response = requests.head(url)
+            if response.status_code == 200 and 'eg' in response.headers.get('Server', ''):
+                self.egypt_domains.append(urlparse(url))
+            else:
+                try:
+                    ip_address = socket.gethostbyname(url)
+                    with geoip2.database.Reader(GEOIP_DB_PATH) as reader:
+                        response = reader.country(ip_address)
+                        if response.country.iso_code == 'EG':
+                            self.egypt_domains.append(url)
+                        else:
+                            self.is_hosted_in_egypt_alt(url)
+                except:
+                    pass
+        except:
+            pass
         return self.egypt_domains
 
 
     def is_hosted_in_egypt_alt(self, url):
-        response = requests.head(url)
-        if response.status_code == 200 and 'eg' in response.headers.get('Server', ''):
-            self.egypt_domains.append(urlparse(url))
+        ip_address = socket.gethostbyname(url)
+        url_lookup = 'https://ipinfo.io/' + ip_address + '/json'
+        response = urlopen(url_lookup)
+        data = load(response)
+        if data['country'] == "EG":
+            self.egypt_domains.append(url)
         else:
-            ip_address = socket.gethostbyname(url)
-            url_lookup = 'https://ipinfo.io/' + ip_address + '/json'
-            response = urlopen(url_lookup)
-            data = load(response)
-            if data['country'] == "EG":
-                self.egypt_domains.append(url)
-            else:
-                pass
+            pass
         return self.egypt_domains
 
     

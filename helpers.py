@@ -3,28 +3,30 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 import tldextract
 import numpy as np
+from models import Seing
+import re
 
-class PageRank:
+class Helpers:
 
     def __init__(self, urls=[]):
         self.urls = urls
 
 
-    def page_rank(self, urls=[], damping_factor=0.85, max_iterations=100, epsilon=1e-6):
+    def page_rank(self, damping_factor=0.85, max_iterations=100, epsilon=1e-6):
         '''
         Return dict of URLs with score. But dict is init with all four database model.
         '''
         # Construct the index mapping for the URLs
         index_map = {}
-        for i, url in enumerate(urls):
+        for i, url in enumerate(self.urls):
             index_map[url] = i
 
         # Construct the adjacency matrix
-        n = len(urls)
+        n = len(self.urls)
         adjacency_matrix = np.zeros((n, n))
         for i in range(n):
             try:
-                html = requests.get(urls[i]).content
+                html = requests.get(self.urls[i]).content
                 soup = BeautifulSoup(html, 'html.parser')
                 links = soup.find_all('a')
                 for link in links:
@@ -59,20 +61,41 @@ class PageRank:
         # Return the PageRank scores as a dictionary of URL: score pairs
         page_ranks = []
         keys = ['site', 'url', 'score', 'desc']
-        for i, url in enumerate(urls):
+        for i, url in enumerate(self.urls):
             values = [self.get_title_from_url(url), url, pi[i], self.get_url_description(url)]
             my_dict = dict(zip(keys, values))
             page_ranks.append(my_dict)
-        
         return page_ranks
 
+
+    def dicts_to_records(self, dicts):
+        records = []
+        for item in dicts:
+            record = Seing(**item)
+            records.append(record)
+        return records
+
+
+    def urls_list_filler(self):
+        '''
+        Prepare a list of URLs to the standard form of SEING.
+        '''
+        keys = ['site', 'url', 'score', 'desc']
+        filled_list = []
+        for url in self.urls:
+            values = [self.get_title_from_url(url), url, -1, self.get_url_description(url)]
+            my_dict = dict(zip(keys, values))
+            filled_list.append(my_dict)
+        return filled_list
     
+
     def get_title_from_url(self, url):
         try:
             response = requests.get(url)
             soup = BeautifulSoup(response.text, 'html.parser')
             title = soup.title.string.strip()
-            return title
+            clean_title = re.sub(r'[^\w\s]', '', title).strip()
+            return clean_title
         except:
             netloc = urlparse(url).netloc
             extracted = tldextract.extract(netloc)
@@ -91,5 +114,4 @@ class PageRank:
                 return ''
         except:
             return ''
-
         return description

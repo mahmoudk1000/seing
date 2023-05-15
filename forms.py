@@ -1,10 +1,11 @@
 from sqlalchemy.orm import validates
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, RadioField, EmailField, PasswordField, TextAreaField
+from wtforms import StringField, SubmitField, RadioField, EmailField, PasswordField, TextAreaField, BooleanField
 from wtforms.validators import DataRequired, Length
 
 
 class SearchForm(FlaskForm):
+    toggle = BooleanField('Net Search')
     query = StringField('q', validators=[DataRequired(), Length(1, 64)], render_kw={'autocomplete': 'off'})
     submit = SubmitField('submit')
 

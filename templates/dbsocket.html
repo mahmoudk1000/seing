@@ -7,40 +7,56 @@
 <link
   rel="stylesheet"
   type="text/css"
+  href="{{url_for('.static', filename='colors.css')}}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
   href="{{url_for('.static', filename='dbsocket.css')}}"
 />
 {% endblock %}
 
 {% block body %}
-<body>
-  <form action="#" method="POST">
-    {{ form.csrf_token }}
-    {{ form.web_list.label }}
-    {{ form.web_list(id='input_list') }}
-    {{ form.web_type.label }}
-    <div class="side_label">
-      {% for subfield in form.web_type %}
-        {{ subfield }}
-        {{ subfield.label }}
-      {% endfor %}
-    </div>
-    {{ form.submit }}
-   </form>
-  <table>
+<h1 class="name">Database Engine</h1>
+<div class="upper">
+  <div class="form_container">
+    <form action="#" method="POST">
+      {{ form.csrf_token }}
+      {{ form.web_list.label }}
+      {{ form.web_list(id='input_list') }}
+      {{ form.web_type.label }}
+      <div class="side_label">
+        {% for subfield in form.web_type %}
+          {{ subfield }}
+          {{ subfield.label }}
+        {% endfor %}
+      </div>
+      {{ form.submit }}
+    </form>
+  </div>
+  <div class="right_to_form">
+    <h2>Notes:</h2>
+    <ul>
+      <li>Make sure to enter a list seprated by comma.</li>
+      <blockquote>https://www.iti.gov.eg/,https://maharatech.gov.eg/,...</blockquote>
+      <li>Be sure that you select the right corresponding type for your first entry.</li>
+    </ul>
+  </div>
+</div>
+<table>
+  <tr>
+    <th>Site</th>
+    <th>URL</th>
+    <th>Score</th>
+    <th>Description</th>
+  </tr>
+  {% for record in records %}
     <tr>
-      <th>Site</th>
-      <th>URL</th>
-      <th>Score</th>
-      <th>Description</th>
+      <td>{{ record.site }}</td>
+      <td>{{ record.url }}</td>
+      <td>{{ record.score }}</td>
+      <td>{{ record.desc }}</td>
     </tr>
-    {% for record in records %}
-      <tr>
-        <td>{{ record.site }}</td>
-        <td>{{ record.url }}</td>
-        <td>{{ record.score }}</td>
-        <td>{{ record.desc }}</td>
-      </tr>
-    {% endfor %}
-  </table>
-  </body>
+  {% endfor %}
+</table>
 {% endblock %}

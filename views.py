@@ -1,21 +1,18 @@
-#!/usr/bin/env python
-
 from sqlalchemy.orm import query, session
 from flask import Flask, redirect, url_for, render_template, request, session, flash, jsonify
 from models import db, login, User, Seing
 from flask_login import current_user, login_user, login_required, logout_user
 from forms import SearchForm, WebDataForm, LoginForm, RegisterForm
-from search import search_db, fuzz_db, fetch_suggestions
+from search import Search
 from server import Server
-
-server = Server()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SEING'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///seing.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+app.config['SESSION_COOKIE_SECURE'] = True
+app.config['SESSION_COOKIE_SAMESITE'] = 'None'
 
 db.init_app(app)
 login.init_app(app)
@@ -32,19 +29,31 @@ def seing():
     '''Searching func, that links db with front and searching'''
     search_form = SearchForm(request.form)
     if request.method == "POST":
-        results = fuzz_db(search_form.query.data)
-        return seing_results(query=search_form.query.data, results=results, form=search_form)
+        search = Search(search_form.query.data)
+        session['toggle'] = search_form.toggle.data
+        if search_form.toggle.data:
+            net_results = search.web_search()
+            return seing_results(query=search_form.query.data, results=net_results, form=search_form)
+        else:
+            local_results = search.fuzz_db()
+            return seing_results(query=search_form.query.data, results=local_results, form=search_form)
     else:
         return render_template("homePage.html", form=search_form)
 
 
-@app.route("/results?<q>", methods=["POST", "GET"])
+@app.route("/results?<query>", methods=["POST", "GET"])
 def seing_results(query, results, form):
     if request.method == "GET":
-        return render_template("results.html", results=results, q=query, form=form)
+        return render_template("results.html", q=query, results=results, form=form)
     elif request.method == "POST":
-        results = fuzz_db(form.query.data)
-        return render_template("results.html", results=results, q=form.query.data, form=form)
+        search = Search(form.query.data)
+        form.toggle.data = session.get('toggle')
+        if form.toggle.data:
+            net_results = search.web_search()
+            return render_template("results.html", q=form.query.data, results=net_results, form=form)
+        else:
+            local_results = search.fuzz_db()
+            return render_template("results.html", q=form.query.data, results=local_results, form=form)
     else:
         return redirect("/")
 
@@ -56,13 +65,12 @@ def dbsocket():
         records = Seing.query.all()
         return render_template("dbsocket.html", records=records, form=data_list_form)
     elif request.method == "POST":
-        web_list = data_list_form.web_list.data
+        server = Server(data_list_form.web_list.data)
         if data_list_form.web_type.data == 'list':
-            print(web_list.split(','))
-            records = server.data_list_handler(web_list.replace('\n', ',').split(","))
+            records = server.data_list_handler()
             return render_template("dbsocket.html", records=records, form=data_list_form)
         elif data_list_form.web_type.data == 'query':
-            records = server.data_query_hanlder(web_list)
+            records = server.data_query_hanlder()
             return render_template("dbsocket.html", records=records, form=data_list_form)
         else:
             return redirect("/")
@@ -136,10 +144,10 @@ def autocomplete():
     query = request.args.get('query')
     if not query:
         return jsonify({'suggestions': []})
-    suggestions = fetch_suggestions(query)
-    # suggestions = [f'<a id="suggestion-{i}" href="javascript:void(0);" onclick="document.getElementById(\'query\').value=\'{suggestion}\';document.getElementById(\'submit\').submit();">{suggestion}</a>' for i, suggestion in enumerate(suggestions)]
+    search = Search(query)
+    suggestions = search.fetch_suggestions()
     return jsonify(suggestions)
 
 
-if __name__ == "__main__":
+def run_app() -> None:
     app.run(debug=True)

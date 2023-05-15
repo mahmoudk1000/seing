@@ -1,5 +1,3 @@
-@import url("colors.css");
-
 .body {
     background-color: var(--bg);
     margin: 0;

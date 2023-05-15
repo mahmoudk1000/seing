@@ -17,17 +17,29 @@
 {% endblock %}
 
 {% block body %}
-<body class="body" style="margin: 0px auto">
-  <div class="top_widget">
-    <p class="top_widget_text">UI revamped, privacy corrected</p>
-    <a href="/profile">
-      <img
-        src="{{ url_for('static', filename='assets/sign_in_icon_widget.png') }}"
-        alt="account icon"
-        width="42"
-        height="42"
-      />
-    </a>
+<form method="POST" action="/">
+  <div>
+    <div class="toogle">
+      <label class="toggler-wrapper style-3">
+        {{ form.toggle }}
+        <div class="toggler-slider">
+        <div class="toggler-knob"></div>
+        </div>
+      </label>
+      <div class="badge">{{ form.toggle.label }}</div>
+    </div>
+    <div class="branding">
+      <p class="top_widget_text">UI revamped, privacy corrected</p>
+      <button onclick="toggleDarkTheme()">Toggle Dark Theme</button>
+      <a href="/profile">
+        <img
+          src="{{ url_for('static', filename='assets/sign_in_icon_widget.png') }}"
+          alt="account icon"
+          width="42"
+          height="42"
+        />
+      </a>
+    </div>
   </div>
   <div class="content">
     <div class="logo_wrap_home">
@@ -43,17 +55,15 @@
         </div>
       </div>
       <div id="searchForm" class="search_bar_homepage">
-        <form method="POST" action="/">
-          {{ form.query(class='search_url_homepage', id='search_url_homepage_id', placeholder='Search The Web') }}
-          {{ form.submit(class='search_button_homepage', id='search_button_homepage_id') }}
-        </form>
+        {{ form.query(class='search_url_homepage', id='search_url_homepage_id', placeholder='Search The Web') }}
+        {{ form.submit(class='search_button_homepage', id='search_button_homepage_id') }}
       </div>
     </div>
     <ul id="suggestion-list">
     </ul>
   </div>
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-  <script src="{{ url_for('static', filename='js/suggest.js') }}"></script>
-</body>
+</form>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="{{ url_for('static', filename='js/suggest.js') }}"></script>
 {% endblock %}

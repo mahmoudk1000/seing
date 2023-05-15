@@ -1,16 +1,13 @@
-@import url("colors.css");
-
 .body {
     background-color: var(--bg);
     margin: 0;
+    color: var(--fg);
 }
 
 .header_wrap {
     position: absolute;
     width: 92%;
     margin: auto;
-    margin-top: auto;
-    margin-bottom: auto;
     margin-bottom: 0.8em;
     margin-top: -1.25em;
     position: absolute;
@@ -29,7 +26,7 @@
     width: 50%;
     justify-content: right;
     position: absolute;
-    margin-top: 50px;
+    margin-top: 2%;
     top: 0;
     right: 0;
 }
@@ -115,10 +112,10 @@ input[type="text"]:focus {
 }
 
 .search_bar_homepage {
-    width: 80%;
-    margin-left: 150px;
-    position: absolute;
+    width: 100%;
     top: 35%;
+    left: 15%;
+    position: absolute;
 }
 
 .search_bar_homepage:hover #search_button_homepage_id {
@@ -137,21 +134,21 @@ input[type="text"]:focus {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
-  border: 1px var(--fg) solid;
+  border: 1px var(--dbg) solid;
   border-radius: 4px;
-  box-shadow: 4px -4px var(--dbg);
+  box-shadow: 4px -4px var(--ddbg);
   padding: 1%;
 }
 
 .search-result__name {
   font-size: 18px;
   font-weight: bold;
-  color: var(--fg);
+  color: var(--bbb);
 }
 
 .search-result__link {
   font-size: 14px;
-  color: var(--link);
+  color: var(--grt);
   text-decoration: none;
 }
 
@@ -161,6 +158,6 @@ input[type="text"]:focus {
 
 .search-result__description {
   font-size: 14px;
-  color: var(--fbg);
+  color: var(--ddbg);
   margin-top: 5px;
 }

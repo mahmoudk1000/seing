@@ -6,62 +6,65 @@
 <link
   rel="stylesheet"
   type="text/css"
+  href="{{url_for('.static', filename='colors.css')}}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
   href="{{url_for('.static', filename='signup.css')}}"
 />
 {% endblock %}
 
 {% block body %}
-<body class="body" style="margin: 0px auto">
-  <div class="content">
-    <div class="logo_wrap_home">
-      <div class="logo_combine_home">
-        <p class="logo_text_home">SEING</p>
-        <div class="logo_wrapper">
-          <img
-            src="{{ url_for('static', filename='assets/logo.png') }}"
-            alt="einstein smiles"
-            width="125"
-            height="150"
-          />
-        </div>
-      </div>
-      <div class="sign-up_container">
-        <div style="margin: 5%;">
-            <form method="POST" action="#">
-            <h1 style="font-size: 4.5em;">Welcome You!</h1>
-            <div class="form_container" style="text-align: left;">
-              <div class="up" >
-                <div class="breaker">
-                  {{ form.username.label }}
-                  {{ form.username(placeholder='Mohammed') }}
-                </div>
-                <div class="breaker">
-                  {{ form.email.label }}
-                  {{ form.email(placeholder='mohammed@exmapl.com') }}
-                </div>
-              </div>
-              <div class="down">
-                <div class="breaker">
-                  {{ form.password.label }}
-                  {{ form.password(placeholder='**********') }}
-                </div>
-                <div class="breaker">
-                  {{ form.conf_password.label }}
-                  {{ form.conf_password(placeholder='**********') }}
-                </div>
-              </div>
-            </div>
-            <div class="buttons_container">
-              <div class="button_sign-up">
-                {{ form.register }}
-              </div>
-                <input style="width: 39%;" type="button" tabindex="1" value="Terms % Agreement" />
-                <input type="button" style="width: 39%;" onclick="window.location.href='/login';" tabindex="2" value="Login" />
-              </div>
-            </div>
-        </form>
+<div class="content">
+  <div class="logo_wrap_home">
+    <div class="logo_combine_home">
+      <p class="logo_text_home">SEING</p>
+      <div class="logo_wrapper">
+        <img
+          src="{{ url_for('static', filename='assets/logo.png') }}"
+          alt="einstein smiles"
+          width="125"
+          height="150"
+        />
       </div>
     </div>
+    <div class="sign-up_container">
+      <div style="margin: 5%;">
+          <form method="POST" action="#">
+          <h1 style="font-size: 4.5em;">Welcome You!</h1>
+          <div class="form_container" style="text-align: left;">
+            <div class="up" >
+              <div class="breaker">
+                {{ form.username.label }}
+                {{ form.username(placeholder='Mohammed') }}
+              </div>
+              <div class="breaker">
+                {{ form.email.label }}
+                {{ form.email(placeholder='mohammed@exmapl.com') }}
+              </div>
+            </div>
+            <div class="down">
+              <div class="breaker">
+                {{ form.password.label }}
+                {{ form.password(placeholder='**********') }}
+              </div>
+              <div class="breaker">
+                {{ form.conf_password.label }}
+                {{ form.conf_password(placeholder='**********') }}
+              </div>
+            </div>
+          </div>
+          <div class="buttons_container">
+            <div class="button_sign-up">
+              {{ form.register }}
+            </div>
+              <input style="width: 39%;" type="button" tabindex="1" value="Terms % Agreement" />
+              <input type="button" style="width: 39%;" onclick="window.location.href='/login';" tabindex="2" value="Login" />
+            </div>
+          </div>
+      </form>
+    </div>
   </div>
-</body>
+</div>
 {% endblock %}

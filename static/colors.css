@@ -1,22 +1,23 @@
 :root {
     /* Colors */
-    --bg: #EFEFE3;
+    --bg: #F1F1F1;
     --fg: #373737;
-    --gro: #FA9372;
-    --grt: #EF709B;
-    --dbg: #D9D9D9;
-    --ddbg: #cecece;
-    --fbg: #666;
-    --link: #0066c0;
+    --gro: #9bb2e5;
+    --grt: #698cbf;
+    --dbg: #cccccc;
+    --ddbg: #bbbbbb;
+    --bbb: #373737;
 }
 
-:root.dark-mode {
+.dark-theme {
     /* Colors */
     --bg: #121212;
-    --fg: #E5E5E5;
-    --gro: #BB86FC;
-    --grt: #BB86FC;
-    --dbg: #373737;
+    --fg: #F6F7F7;
+    --gro: #edc772;
+    --grt: #edc772;
+    --dbg: #626262;
+    --ddbg: #555655;
+    --bbb: #494A49
 }
 
 @font-face {

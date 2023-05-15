@@ -6,44 +6,47 @@
 <link
   rel="stylesheet"
   type="text/css"
+  href="{{url_for('.static', filename='colors.css')}}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
   href="{{url_for('.static', filename='login.css')}}"
 />
 {% endblock %}
 
 {% block body %}
-<body class="body" style="margin: 0px auto">
-  <div class="content">
-    <div class="logo_wrap_home">
-      <div class="logo_combine_home">
-        <p class="logo_text_home">SEING</p>
-        <div class="logo_wrapper">
-          <img
-            src="{{ url_for('static', filename='assets/logo.png') }}"
-            alt="einstein smiles"
-            width="125"
-            height="150"
-          />
-        </div>
-      </div>
-      <div class="login_container">
-        <div style="margin: 5%;">
-            <form method="POST" action="/login">
-              <h1 style="font-size: 3.5em;">Welcome Back!</h1>
-              {{ form.email.label }}
-              {{ form.email(class='login_form_min', placeholder='Mohammed@example.com') }}
-              {{ form.password.label }}
-              {{ form.password(class='login_form_min', placeholder='************') }}
-              <div class="buttons_container">
-                <div class="button_login">
-                  {{ form.login }}
-                </div>
-                  <input style="width: 39%;" type="button" tabindex="1" value="Forget Password" />
-                  <input type="button" style="width: 39%;" onclick="window.location.href='/signup';" tabindex="2" value="Sign Up" />
-              </div>
-            </div>
-        </form>
+<div class="content">
+  <div class="logo_wrap_home">
+    <div class="logo_combine_home">
+      <p class="logo_text_home">SEING</p>
+      <div class="logo_wrapper">
+        <img
+          src="{{ url_for('static', filename='assets/logo.png') }}"
+          alt="einstein smiles"
+          width="125"
+          height="150"
+        />
       </div>
     </div>
+    <div class="login_container">
+      <div style="margin: 5%;">
+          <form method="POST" action="/login">
+            <h1 style="font-size: 3.5em;">Welcome Back!</h1>
+            {{ form.email.label }}
+            {{ form.email(class='login_form_min', placeholder='Mohammed@example.com') }}
+            {{ form.password.label }}
+            {{ form.password(class='login_form_min', placeholder='************') }}
+            <div class="buttons_container">
+              <div class="button_login">
+                {{ form.login }}
+              </div>
+                <input style="width: 39%;" type="button" tabindex="1" value="Forget Password" />
+                <input type="button" style="width: 39%;" onclick="window.location.href='/signup';" tabindex="2" value="Sign Up" />
+            </div>
+          </div>
+      </form>
+    </div>
   </div>
-</body>
+</div>
 {% endblock %}

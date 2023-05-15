@@ -3,7 +3,18 @@
   <head>
     <title>{% block title %}{% endblock %}</title>
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='colors.css') }}">
+    <script src="{{ url_for('static', filename='js/theme.js') }}" ></script>
+    <script>
+      var theme = sessionStorage.getItem("theme");
+      if (theme == 'dark-theme') {
+        document.body.classList.add('dark-theme');
+      }
+    </script>
     {% block styles %}{% endblock %}
   </head>
-  {% block body %} {% endblock %}
+  <body class="body">
+    {% block body %}
+    {% endblock %}
+  </body>
 </html>
