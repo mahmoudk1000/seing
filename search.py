@@ -18,7 +18,8 @@ class Search:
 
     def web_search(self):
         duckduckgo_results = self.duckduckgo_search()
-        results = duckduckgo_results
+        web_results = duckduckgo_results
+        results = self.remove_duplicates(web_results)
         filterd_domains = self.agyptinzer_instance.check_egypt(results)
         helpers = Helpers(filterd_domains)
         results_list = helpers.urls_list_filler()
@@ -88,11 +89,19 @@ class Search:
             ratio = fuzz.token_sort_ratio(self.query, result.site)
             if ratio >= 35:
                 matches.append(result)
-        if len(matches) <= 2:
-            results = self.search_db()
-            return results
         ranked_matches = sorted(matches, key=lambda x: getattr(x, sort_col))
         return ranked_matches
+
+
+    def top_fuzzed(self):
+        values = Seing.query.all()
+        results = []
+        for value in values:
+            score = fuzz.token_sort_ratio(self.query, value.site)
+            results.append((value, score))
+
+        results = sorted(results, key=lambda x: x[1], reverse=True)[:10]
+        return [r[0] for r in results]
 
 
     def index_model(self):
@@ -128,3 +137,7 @@ class Search:
         suggestions = process.extractBests(self.query, [choice.site for choice in choices], scorer=fuzz.token_sort_ratio,  
       limit=10)
         return [suggestion[0] for suggestion in suggestions]
+
+
+    def remove_duplicates(self, lst):
+        return list(set(lst))
