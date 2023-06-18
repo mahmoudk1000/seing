@@ -32,8 +32,12 @@ def seing():
         search = Search(search_form.query.data)
         session['toggle'] = search_form.toggle.data
         if search_form.toggle.data:
-            net_results = search.web_search()
-            return seing_results(query=search_form.query.data, results=net_results, form=search_form)
+            net_results = search.net_search()
+            print(net_results)
+            if net_results:
+                return seing_results(query=search_form.query.data, results=net_results, form=search_form)
+            else:
+                return redirect("/")
         else:
             local_results = search.top_fuzzed()
             return seing_results(query=search_form.query.data, results=local_results, form=search_form)
@@ -49,7 +53,7 @@ def seing_results(query, results, form):
         search = Search(form.query.data)
         form.toggle.data = session.get('toggle')
         if form.toggle.data:
-            net_results = search.web_search()
+            net_results = search.net_search()
             return render_template("results.html", q=form.query.data, results=net_results, form=form)
         else:
             local_results = search.top_fuzzed()
@@ -62,7 +66,7 @@ def seing_results(query, results, form):
 def dbsocket():
     data_list_form = WebDataForm(request.form)
     if request.method == "GET":
-        records = Seing.query.all()
+        records = Seing.query.all()[:50]
         return render_template("dbsocket.html", records=records, form=data_list_form)
     elif request.method == "POST":
         server = Server(data_list_form.web_list.data)

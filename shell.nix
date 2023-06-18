@@ -5,7 +5,6 @@ pkgs.mkShell rec {
   venvDir = "./.venv";
 
   packages = [
-    # googlesearch
     (pkgs.python3.withPackages (ps: [
       ps.flask
       ps.venvShellHook
@@ -24,6 +23,7 @@ pkgs.mkShell rec {
       ps.numpy
       ps.python-Levenshtein
       ps.elasticsearch
+      ps.google-api-python-client
     ]))
   ];
 

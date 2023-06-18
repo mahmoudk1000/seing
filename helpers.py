@@ -14,7 +14,7 @@ class Helpers:
 
     def page_rank(self, damping_factor=0.85, max_iterations=100, epsilon=1e-6):
         '''
-        Return dict of URLs with score. But dict is init with all four database model.
+        Helpers: Return dict of URLs with score based on Rankpage algorithm.
         '''
         # Construct the index mapping for the URLs
         index_map = {}
@@ -52,6 +52,8 @@ class Helpers:
         # Run the PageRank algorithm
         for i in range(max_iterations):
             prev_pi = pi.copy()
+            print(n)
+            print(type(n))
             pi = (1 - damping_factor) / n + damping_factor * np.dot(P.T, pi)
 
             # Check for convergence
@@ -69,6 +71,9 @@ class Helpers:
 
 
     def dicts_to_records(self, dicts):
+        '''
+        Helpers: Convert a dict into db record.
+        '''
         records = []
         for item in dicts:
             record = Seing(**item)
@@ -78,18 +83,21 @@ class Helpers:
 
     def urls_list_filler(self):
         '''
-        Prepare a list of URLs to the standard form of SEING.
+        Helpers: Prepare a list of URLs to the standard form of SEING.
         '''
         keys = ['site', 'url', 'score', 'desc']
         filled_list = []
         for url in self.urls:
-            values = [self.get_title_from_url(url), url, -1, self.get_url_description(url)]
+            values = [self.get_title_from_url(url), url, 0, self.get_url_description(url)]
             my_dict = dict(zip(keys, values))
             filled_list.append(my_dict)
         return filled_list
     
 
     def get_title_from_url(self, url):
+        '''
+        Helpers: Extract title tag from a URL.
+        '''
         try:
             response = requests.get(url)
             soup = BeautifulSoup(response.text, 'html.parser')
@@ -104,6 +112,9 @@ class Helpers:
 
 
     def get_url_description(self, url):
+        '''
+        Helpers: Extract description tag from a URL.
+        '''
         try:
             response = requests.get(url)
             soup = BeautifulSoup(response.content, 'html.parser')

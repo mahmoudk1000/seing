@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='colors.css') }}">
     <script src="{{ url_for('static', filename='js/theme.js') }}" ></script>
     <script>
-      var theme = sessionStorage.getItem("theme");
-      if (theme == 'dark-theme') {
-        document.body.classList.add('dark-theme');
+      const savedTheme = sessionStorage.getItem('theme');
+      if (sessionStorage.getItem('theme') === 'dark-theme') {
+        document.querySelector('body').classList.add('dark-theme');
       }
     </script>
     {% block styles %}{% endblock %}

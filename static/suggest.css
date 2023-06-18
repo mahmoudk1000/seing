@@ -1,5 +1,5 @@
 ul#suggestion-list {
-    position: fixed;
+    position: relative;
     background-color: var(--bg);
     z-index: 9999;
     box-shadow: 4px 8px 16px 4px rgba(0,0,0,0.2);

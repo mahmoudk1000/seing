@@ -1,9 +1,12 @@
 function toggleDarkTheme() {
-  var body = document.getElementsByTagName("body")[0];
-  var theme = body.classList.contains("body") ? "dark-theme" : "default-theme";
-  body.classList.toggle(theme);
-  // body.classList.toggle("dark-theme");
-  // save the selected theme to the session
-  sessionStorage.setItem("theme", theme);
-  localStorage.setItem("theme", theme)
+  const body = document.getElementsByTagName("body")[0];
+  const isDarkTheme = body.classList.contains('dark-theme');
+
+  if (isDarkTheme) {
+    body.classList.remove('dark-theme');
+    sessionStorage.setItem('theme', 'light');
+  } else {
+    body.classList.add('dark-theme');
+    sessionStorage.setItem('theme', 'dark');
+  }
 }
