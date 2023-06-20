@@ -1,5 +1,6 @@
 .body {
     background-color: var(--bg);
+    color: var(--fg);
     margin: 0;
 }
 

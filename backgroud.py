@@ -19,7 +19,7 @@ class Background():
 
 
     def add_and_commit(self) -> None:
-        not_to_have = ["New account", "Forgotten password", "Error", "Notice", "EAPI", "403 Forbidden"]
+        not_to_have = ["New account", "Forgotten password", "Error", "Notice", "EAPI", "403 Forbidden", "Redirection Page"]
         for item in self.db_records:
             site_instance = session.query(Seing).filter_by(site=item['site']).first()
             url_instance = session.query(Seing).filter_by(url=item['url']).first()

@@ -39,7 +39,7 @@ def seing():
             else:
                 return redirect("/")
         else:
-            local_results = search.top_fuzzed()
+            local_results = search.es_search()
             return seing_results(query=search_form.query.data, results=local_results, form=search_form)
     else:
         return render_template("homePage.html", form=search_form)
@@ -56,7 +56,7 @@ def seing_results(query, results, form):
             net_results = search.net_search()
             return render_template("results.html", q=form.query.data, results=net_results, form=form)
         else:
-            local_results = search.top_fuzzed()
+            local_results = search.es_search()
             return render_template("results.html", q=form.query.data, results=local_results, form=form)
     else:
         return redirect("/")

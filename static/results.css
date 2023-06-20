@@ -1,7 +1,7 @@
 .body {
     background-color: var(--bg);
-    margin: 0;
     color: var(--fg);
+    margin: 0;
 }
 
 .header_wrap {

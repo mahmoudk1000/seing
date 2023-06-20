@@ -12,10 +12,16 @@ class Helpers:
         self.urls = urls
 
 
-    def page_rank(self, damping_factor=0.85, max_iterations=100, epsilon=1e-6):
+    def page_rank(self, damping_factor=0.85, max_iterations=100, epsilon=1e-6, route=False):
         '''
         Helpers: Return dict of URLs with score based on Rankpage algorithm.
         '''
+        if route:
+            temp_list = []
+            for item in self.urls:
+                temp_list.append(item['url'])
+            self.urls = temp_list
+        
         # Construct the index mapping for the URLs
         index_map = {}
         for i, url in enumerate(self.urls):
@@ -52,8 +58,6 @@ class Helpers:
         # Run the PageRank algorithm
         for i in range(max_iterations):
             prev_pi = pi.copy()
-            print(n)
-            print(type(n))
             pi = (1 - damping_factor) / n + damping_factor * np.dot(P.T, pi)
 
             # Check for convergence

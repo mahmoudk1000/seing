@@ -83,7 +83,7 @@ class Agyptinzer:
                     elif parsed_url.netloc.endswith('.eg') or 'eg' in parsed_url.netloc.split('.'):
                         self.egypt_domains.append(url)
                     else:
-                         self.is_hosted_in_egypt(url)
+                        self.is_hosted_in_egypt(url)
             else:
                 pass
         self.collector(url_list=self.egypt_domains)
