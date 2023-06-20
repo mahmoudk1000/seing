@@ -9,7 +9,6 @@ from agyptinzer import Agyptinzer, re
 from helpers import Helpers
 from backgroud import Background
 import threading
-import time
 
 
 es = Elasticsearch()
@@ -119,31 +118,40 @@ class Search:
 
 
     def index_model(self):
-        for obj in Seing.query.all():
+        '''
+        Part of Elasticsearch, used to index the database. Have to runed al leatest one time.
+        Dramatically increace the search speed.
+        '''
+        records = Seing.query.all()
+        for item in records:
             es.index(index='my_index', doc_type='my_type', body={
-                'site': obj.site,
-                'url': obj.url,
-                'score': obj.score,
-                'description': obj.desc,
+                'site': item.site,
+                'url': item.url,
+                'score': item.score,
+                'desc': item.desc,
             })
 
 
     def es_search(self):
-        self.index_model()
         body = {
-            'query': {
-                'multi_match': {
-                    'query': self.query,
-                    'fields': ['site', 'description', 'url'],
+            "query": {
+                "multi_match": {
+                    "query": self.query,
+                    "fields": ["site", "url", "desc"],
                 }
             },
             "sort": {
                 "score": {"order": "desc"}
-            }
+            },
+            "collapse": {
+                "field": "site.keyword"
+            },
+            "size": 15
         }
         results = es.search(index='my_index', body=body)
         hits = results['hits']['hits']
-        return hits
+        results_list = [hit['_source'] for hit in hits]
+        return results_list
 
 
     def fetch_suggestions(self):
